@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+    <div class="container-fluid main-banner">
+        <div class="row-fluid">
+            <div class="hero-unit">
+                <div class="row-fluid">
+                    <div class="col-lg-12 text-center">
+                        <div class="row-fluid">
+                            <h1 id="title-app-lead">CustomMade Engineering Test</h1>
+                        </div>
+                        <div class="row-fluid secondary-comment">
+                            <h2> </h2>
+                        </div>
+                        <div class="row-fluid text-center">
+                            <a class="btn btn-primary btn-danger btn-large col-lg-4 col-offset-4"
+                                {% if user.is_authenticated %} href="{% url 'tweets:index' %}">Send a Tweet
+                                {% else %} href="{% url 'socialauth_begin' 'twitter' %}">Login with Twitter
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

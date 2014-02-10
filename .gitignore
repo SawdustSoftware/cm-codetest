@@ -1,0 +1,6 @@
+.DS*
+.idea*
+*.pyc*
+*.orig.*
+collectedstatic/*
+

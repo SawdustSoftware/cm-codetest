@@ -1,0 +1,39 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link type="text/css" rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+        <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+
+        <!--- Navigation -->
+        <div class="container-fluid">
+            <div class="navbar navbar-inverse navbar-static-top top-navbar-container">
+                <ul class="nav navbar-nav pull-right top-nav">
+
+                    {% if not user.is_authenticated %}
+                        <li><a href="{% url 'socialauth_begin' 'twitter' %}">Login</a></li>
+                    {% else %}
+                        <li><a href="{% url 'index' %}">CM Engineering Test</a></li>
+                        <li><a href="{% url 'tweets:index' %}">Tweet Now!</a> </li>
+                        <li class="dropdown">
+                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+    <footer>
+        <!--- Load Javascript -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        {% block extraJavaScript %}{% endblock %}
+    </footer>
+</html>

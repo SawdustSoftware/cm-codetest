@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Tweets!{% endblock %}
+{% block content %}
+    {% if form.errors.message %}
+        <!-- Deal with form errors -->
+        <div id="form-errors" class="alert-danger navbar-fixed-top">
+            <button type="button" class="close fade in" data-dismiss="alert">&times;</button>
+            <div class="error text-center">{{ form.errors.message }}</div>
+        </div>
+    {% endif %}
+
+    {% if success %}
+        <div id="form-errors" class="alert-success navbar-fixed-top">
+            <button type="button" class="close fade in" data-dismiss="alert">&times;</button>
+            <p class="success text-center">Success! You just submitted a tweet</p>
+        </div>
+    {% endif %}
+
+    <div class="row-fluid main-banner">
+        <div class="col-lg-4 col-offset-1">
+            <h2 id="page-lead">
+                Please send out a tweet!
+            </h2>
+
+            <h3 id="secondary">
+                If you include a category, <strike>we will post it to twitter!</strike> (you need to include this functionality).
+            </h3>
+        </div>
+        <div class="col-lg-7">
+            <form id="tweet-form" class="form-horizontal" action="#" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-lg-10 col-offset-1">
+                        {{ form.message | attr:"class:form-control" | attr:"row:3" | attr:"placeholder:Type out a tweet! It must be less than 110 characters though"}}
+                        <button type="submit" class="btn-large btn btn-danger btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
