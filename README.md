@@ -1,5 +1,5 @@
 # CustomMade Engineering Test
-## TweeterApp
+## TwitterApp
 This engineering test is a simple test to guage a candidates level of competency in both python and django.
 
 ### INSTALLATION
